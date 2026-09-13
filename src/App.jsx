@@ -2,28 +2,67 @@ import { useState } from "react";
 import CherryBlossom from "./components/CherryBlossom";
 import "./App.css";
 
+const projects = [
+  {
+    category: "AI / INTERACTIVE LEARNING",
+    title: "AI-Based Interactive Quantum Algorithm Learning Platform",
+    description:
+      "An interactive platform designed to make quantum computing concepts and algorithms easier to understand through visual and interactive learning experiences.",
+    github: "https://github.com/ancient333/QuantumLearn",
+  },
+  {
+    category: "AI / CAREER INTELLIGENCE",
+    title: "CareerPath AI",
+    description:
+      "An AI-powered career-focused project designed to support users with intelligent guidance and career-oriented insights.",
+    github: "https://github.com/ancient333/Career-Growth-Ai-Assistant",
+  },
+  {
+    category: "MACHINE LEARNING / DATA",
+    title: "AQI Prediction System",
+    description:
+      "A machine learning project for predicting air quality using data preprocessing, analysis, and regression techniques.",
+    github: "https://github.com/ancient333/AQI-Predictor",
+  },
+];
+
+const additionalWork = [
+  {
+    category: "HARDWARE / SECURITY",
+    title: "RFID Smart Security System",
+    description:
+      "A smart security system project developed as part of the portfolio work.",
+  },
+  {
+    category: "MACHINE LEARNING / DATA",
+    title: "Weather Prediction",
+    description:
+      "A weather prediction project included in the portfolio.",
+  },
+];
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
   return (
-    <div className="site">
-      <div className="background-image" />
-      <div className="background-overlay" />
-
+    <div className="app">
+      <div className="site-background" />
       <CherryBlossom />
 
-      {/* NAVIGATION */}
       <header className="navbar">
-        <a href="#overview" className="logo" onClick={closeMenu}>
+        <a href="#overview" className="brand" onClick={closeMenu}>
           PORTFOLIO
         </a>
 
         <button
           className={`menu-button ${menuOpen ? "active" : ""}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle navigation menu"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
         >
           <span />
           <span />
@@ -31,15 +70,18 @@ function App() {
         </button>
       </header>
 
-      {/* MENU */}
       <div className={`menu-overlay ${menuOpen ? "open" : ""}`}>
         <nav className="menu-links">
           <a href="#overview" onClick={closeMenu}>
             Overview
           </a>
 
-          <a href="#systems" onClick={closeMenu}>
-            Systems
+          <a href="#projects" onClick={closeMenu}>
+            Projects
+          </a>
+
+          <a href="#additional-work" onClick={closeMenu}>
+            Additional Work
           </a>
 
           <a href="#skills" onClick={closeMenu}>
@@ -53,19 +95,18 @@ function App() {
       </div>
 
       <main>
-        {/* HERO */}
-        <section className="hero" id="overview">
+        {/* HERO / OVERVIEW */}
+        <section id="overview" className="hero section">
           <div className="hero-content">
             <p className="eyebrow">AI / ML ENGINEERING</p>
 
-            <h1>Akshaya Krishna S</h1>
-
-            <h2>AI &amp; ML Engineering Student</h2>
-
-            <p className="degree-line">
-              Pursuing a Bachelor&apos;s degree in Engineering, majoring in
-              Artificial Intelligence &amp; Machine Learning.
-            </p>
+            <h1>
+              Building
+              <br />
+              intelligent
+              <br />
+              systems.
+            </h1>
 
             <p className="hero-description">
               Designing intelligent software, machine learning systems, and
@@ -73,7 +114,7 @@ function App() {
               products.
             </p>
 
-            <div className="social-links">
+            <div className="hero-links">
               <a
                 href="https://www.linkedin.com/in/akshaya-krishna-s-5a52a4393/"
                 target="_blank"
@@ -97,127 +138,68 @@ function App() {
           </div>
         </section>
 
-        {/* SYSTEMS */}
-        <section className="systems section" id="systems">
+        {/* PROJECTS */}
+        <section id="projects" className="projects section">
           <div className="section-heading">
             <p className="eyebrow">SELECTED WORK</p>
-            <h2>Systems &amp; Projects</h2>
+            <h2>Projects</h2>
           </div>
 
-          <div className="projects">
-            {/* PROJECT 1 */}
-            <article className="project project-large">
-              <div className="project-number">01</div>
+          <div className="project-list">
+            {projects.map((project, index) => (
+              <article
+                className={`project-card ${
+                  index === 0 ? "featured-project" : ""
+                }`}
+                key={project.title}
+              >
+                <div className="project-meta">
+                  <span>{project.category}</span>
+                  <span>0{index + 1}</span>
+                </div>
 
-              <div className="project-content">
-                <p className="project-type">AI / INTERACTIVE LEARNING</p>
+                <h3>{project.title}</h3>
 
-                <h3>
-                  AI-Based Interactive Quantum Algorithm Learning Platform
-                </h3>
-
-                <p className="project-description">
-                  An interactive platform designed to make quantum computing
-                  concepts and algorithms easier to understand through visual
-                  and interactive learning experiences.
-                </p>
+                <p>{project.description}</p>
 
                 <a
-                  className="repository-link"
-                  href="https://github.com/ancient333/QuantumLearn"
+                  className="project-link"
+                  href={project.github}
                   target="_blank"
                   rel="noreferrer"
                 >
                   GitHub Repository ↗
                 </a>
-              </div>
-            </article>
+              </article>
+            ))}
+          </div>
+        </section>
 
-            {/* PROJECT 2 */}
-            <article className="project">
-              <div className="project-number">02</div>
+        {/* ADDITIONAL WORK */}
+        <section id="additional-work" className="additional-work section">
+          <div className="section-heading">
+            <p className="eyebrow">MORE WORK</p>
+            <h2>Additional Work</h2>
+          </div>
 
-              <div className="project-content">
-                <p className="project-type">AI / CAREER ASSISTANCE</p>
+          <div className="additional-work-list">
+            {additionalWork.map((project, index) => (
+              <article className="additional-card" key={project.title}>
+                <div className="project-meta">
+                  <span>{project.category}</span>
+                  <span>0{index + 1}</span>
+                </div>
 
-                <h3>CareerPath AI</h3>
+                <h3>{project.title}</h3>
 
-                <p className="project-description">
-                  An AI-powered career assistance project focused on helping
-                  users explore and understand career growth opportunities.
-                </p>
-
-                <a
-                  className="repository-link"
-                  href="https://github.com/ancient333/Career-Growth-Ai-Assistant"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub Repository ↗
-                </a>
-              </div>
-            </article>
-
-            {/* PROJECT 3 */}
-            <article className="project">
-              <div className="project-number">03</div>
-
-              <div className="project-content">
-                <p className="project-type">MACHINE LEARNING / DATA</p>
-
-                <h3>AQI Prediction System</h3>
-
-                <p className="project-description">
-                  A machine learning project for air-quality prediction using
-                  data preprocessing, analysis, and predictive modelling.
-                </p>
-
-                <a
-                  className="repository-link"
-                  href="https://github.com/ancient333/AQI-Predictor"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub Repository ↗
-                </a>
-              </div>
-            </article>
-
-            {/* PROJECT 4 */}
-            <article className="project project-small">
-              <div className="project-number">04</div>
-
-              <div className="project-content">
-                <p className="project-type">HARDWARE / SECURITY</p>
-
-                <h3>RFID Smart Security System</h3>
-
-                <p className="project-description">
-                  A smart security system project developed as part of the
-                  portfolio work.
-                </p>
-              </div>
-            </article>
-
-            {/* PROJECT 5 */}
-            <article className="project project-small">
-              <div className="project-number">05</div>
-
-              <div className="project-content">
-                <p className="project-type">MACHINE LEARNING / DATA</p>
-
-                <h3>Weather Prediction</h3>
-
-                <p className="project-description">
-                  A weather prediction project included in the portfolio.
-                </p>
-              </div>
-            </article>
+                <p>{project.description}</p>
+              </article>
+            ))}
           </div>
         </section>
 
         {/* SKILLS */}
-        <section className="skills section" id="skills">
+        <section id="skills" className="skills section">
           <div className="section-heading">
             <p className="eyebrow">CAPABILITIES</p>
             <h2>Skills</h2>
@@ -234,11 +216,15 @@ function App() {
         </section>
 
         {/* CONTACT */}
-        <section className="contact section" id="contact">
+        <section id="contact" className="contact section">
           <div className="contact-content">
             <p className="eyebrow">GET IN TOUCH</p>
 
-            <h2>Let&apos;s build something intelligent.</h2>
+            <h2>
+              Let's build
+              <br />
+              something intelligent.
+            </h2>
 
             <a
               className="contact-email"
@@ -246,13 +232,31 @@ function App() {
             >
               krishnasakshaya24@gmail.com ↗
             </a>
+
+            <div className="contact-links">
+              <a
+                href="https://www.linkedin.com/in/akshaya-krishna-s-5a52a4393/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn ↗
+              </a>
+
+              <a
+                href="https://github.com/ancient333"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub ↗
+              </a>
+            </div>
           </div>
         </section>
       </main>
 
       <footer className="footer">
-        <span>Akshaya Krishna S</span>
-        <span>AI &amp; ML Engineering</span>
+        <span>© {new Date().getFullYear()} Akshaya Krishna S</span>
+        <span>AI / ML ENGINEERING</span>
       </footer>
     </div>
   );
