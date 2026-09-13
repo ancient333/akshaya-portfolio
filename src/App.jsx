@@ -2,70 +2,81 @@ import { useState } from "react";
 import CherryBlossom from "./components/CherryBlossom";
 import "./App.css";
 
-const projects = [
-  {
-    number: "01",
-    category: "AI / INTERACTIVE LEARNING",
-    title: "AI-Based Interactive Quantum Algorithm Learning Platform",
-    description:
-      "An interactive platform designed to make quantum computing concepts and algorithms easier to understand through visual and interactive learning experiences.",
-    github: "https://github.com/ancient333/QuantumLearn",
-  },
-  {
-    number: "02",
-    category: "AI / CAREER INTELLIGENCE",
-    title: "CareerPath AI",
-    description:
-      "An AI-focused project built around helping users explore and understand career-oriented paths.",
-    github: "https://github.com/ancient333/Career-Growth-Ai-Assistant",
-  },
-  {
-    number: "03",
-    category: "MACHINE LEARNING / DATA",
-    title: "AQI Prediction System",
-    description:
-      "A machine learning project focused on air-quality prediction using data preprocessing, analysis and regression techniques.",
-    github: "https://github.com/ancient333/AQI-Predictor",
-  },
-];
-
-const additionalWork = [
-  {
-    number: "01",
-    category: "HARDWARE / SECURITY",
-    title: "RFID Smart Security System",
-    description:
-      "A hardware-focused security project using RFID-based access and security concepts.",
-  },
-  {
-    number: "02",
-    category: "MACHINE LEARNING / DATA",
-    title: "Weather Prediction",
-    description:
-      "A weather prediction project included as part of the portfolio work.",
-  },
-];
-
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const closeMenu = () => setMenuOpen(false);
+  const mainProjects = [
+    {
+      number: "01",
+      category: "AI / INTERACTIVE LEARNING",
+      title: "AI-Based Interactive Quantum Algorithm Learning Platform",
+      description:
+        "An interactive platform designed to make quantum computing concepts and algorithms easier to understand through visual and interactive learning experiences.",
+      link: "https://github.com/ancient333/QuantumLearn",
+    },
+    {
+      number: "02",
+      category: "AI / CAREER",
+      title: "CareerPath AI",
+      description:
+        "An AI-focused project designed around career guidance and personalized assistance.",
+      link: "https://github.com/ancient333/Career-Growth-Ai-Assistant",
+    },
+    {
+      number: "03",
+      category: "MACHINE LEARNING / DATA",
+      title: "AQI Prediction System",
+      description:
+        "A machine learning project focused on air-quality prediction using data preprocessing, analysis, and predictive modeling.",
+      link: "https://github.com/ancient333/AQI-Predictor",
+    },
+  ];
+
+  const additionalWork = [
+    {
+      number: "01",
+      category: "HARDWARE / SECURITY",
+      title: "RFID Smart Security System",
+      description:
+        "A smart security system project developed as part of the portfolio work.",
+    },
+    {
+      number: "02",
+      category: "MACHINE LEARNING / DATA",
+      title: "Weather Prediction",
+      description:
+        "A weather prediction project included in the portfolio.",
+    },
+  ];
+
+  const skills = [
+    "Java",
+    "Python",
+    "SQL",
+    "React",
+    "Data Analytics",
+    "Machine Learning",
+    "JavaScript",
+    "HTML",
+  ];
 
   return (
-    <div className="site">
-      <div className="site-background" />
+    <div className="portfolio">
+      <div className="background-image" />
+      <div className="background-overlay" />
+
       <CherryBlossom />
 
+      {/* NAVIGATION */}
       <header className="navbar">
-        <a href="#overview" className="logo" onClick={closeMenu}>
-          AKS
+        <a href="#overview" className="logo">
+          AK
         </a>
 
         <button
           className={`menu-button ${menuOpen ? "active" : ""}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Open navigation"
-          aria-expanded={menuOpen}
         >
           <span />
           <span />
@@ -73,25 +84,41 @@ function App() {
         </button>
       </header>
 
+      {/* MENU */}
       <div className={`menu-overlay ${menuOpen ? "open" : ""}`}>
-        <nav>
-          <a href="#overview" onClick={closeMenu}>
+        <nav className="menu-links">
+          <a
+            href="#overview"
+            onClick={() => setMenuOpen(false)}
+          >
             Overview
           </a>
 
-          <a href="#projects" onClick={closeMenu}>
+          <a
+            href="#projects"
+            onClick={() => setMenuOpen(false)}
+          >
             Projects
           </a>
 
-          <a href="#additional-work" onClick={closeMenu}>
+          <a
+            href="#additional-work"
+            onClick={() => setMenuOpen(false)}
+          >
             Additional Work
           </a>
 
-          <a href="#skills" onClick={closeMenu}>
+          <a
+            href="#skills"
+            onClick={() => setMenuOpen(false)}
+          >
             Skills
           </a>
 
-          <a href="#contact" onClick={closeMenu}>
+          <a
+            href="#contact"
+            onClick={() => setMenuOpen(false)}
+          >
             Contact
           </a>
         </nav>
@@ -99,17 +126,27 @@ function App() {
 
       <main>
         {/* HERO */}
-        <section className="hero section" id="overview">
-          <div className="hero-inner">
-            <p className="eyebrow">AI / ML ENGINEERING</p>
+        <section className="hero" id="overview">
+          <div className="hero-content">
+            <div className="eyebrow">AI / ML ENGINEERING</div>
 
-            <h1>Akshaya Krishna S</h1>
+            <h1 className="hero-name">
+              Akshaya Krishna S
+            </h1>
 
-            <h2>AI &amp; ML Engineering Student</h2>
+            <h2 className="hero-role">
+              AI &amp; ML Engineering Student
+            </h2>
+
+            <p className="hero-education">
+              Pursuing a Bachelor&apos;s Degree in Engineering,
+              majoring in Artificial Intelligence and Machine Learning.
+            </p>
 
             <p className="hero-description">
-              Pursuing a Bachelor&apos;s Degree in Engineering, specializing
-              in Artificial Intelligence &amp; Machine Learning.
+              Designing intelligent software, machine learning systems,
+              and interactive experiences that turn complex ideas into
+              useful products.
             </p>
 
             <div className="social-links">
@@ -137,35 +174,32 @@ function App() {
         </section>
 
         {/* PROJECTS */}
-        <section className="projects section" id="projects">
+        <section className="projects-section" id="projects">
           <div className="section-heading">
-            <p className="eyebrow">SELECTED WORK</p>
+            <div className="eyebrow">SELECTED PROJECTS</div>
             <h2>Projects</h2>
           </div>
 
-          <div className="project-list">
-            {projects.map((project) => (
+          <div className="projects-list">
+            {mainProjects.map((project) => (
               <article className="project-card" key={project.number}>
-                <div className="project-number">{project.number}</div>
-
-                <div className="project-content">
-                  <p className="project-category">{project.category}</p>
-
-                  <h3>{project.title}</h3>
-
-                  <p className="project-description">
-                    {project.description}
-                  </p>
-
-                  <a
-                    className="repository-link"
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    GitHub Repository ↗
-                  </a>
+                <div className="project-meta">
+                  <span>{project.category}</span>
+                  <span>{project.number}</span>
                 </div>
+
+                <h3>{project.title}</h3>
+
+                <p>{project.description}</p>
+
+                <a
+                  className="repository-link"
+                  href={project.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub Repository ↗
+                </a>
               </article>
             ))}
           </div>
@@ -173,72 +207,74 @@ function App() {
 
         {/* ADDITIONAL WORK */}
         <section
-          className="additional-work section"
+          className="additional-section"
           id="additional-work"
         >
           <div className="section-heading">
-            <p className="eyebrow">OTHER BUILDS</p>
+            <div className="eyebrow">OTHER WORK</div>
             <h2>Additional Work</h2>
           </div>
 
           <div className="additional-list">
-            {additionalWork.map((work) => (
-              <article className="additional-card" key={work.number}>
-                <div className="additional-number">{work.number}</div>
-
-                <div className="additional-content">
-                  <p className="project-category">{work.category}</p>
-
-                  <h3>{work.title}</h3>
-
-                  <p className="project-description">
-                    {work.description}
-                  </p>
+            {additionalWork.map((project) => (
+              <article
+                className="additional-card"
+                key={project.number}
+              >
+                <div className="project-meta">
+                  <span>{project.category}</span>
+                  <span>{project.number}</span>
                 </div>
+
+                <h3>{project.title}</h3>
+
+                <p>{project.description}</p>
               </article>
             ))}
           </div>
         </section>
 
         {/* SKILLS */}
-        <section className="skills section" id="skills">
+        <section className="skills-section" id="skills">
           <div className="section-heading">
-            <p className="eyebrow">CAPABILITIES</p>
+            <div className="eyebrow">CAPABILITIES</div>
             <h2>Skills</h2>
           </div>
 
           <div className="skills-grid">
-            <span>Python</span>
-            <span>Machine Learning</span>
-            <span>Artificial Intelligence</span>
-            <span>Data Analysis</span>
-            <span>React</span>
-            <span>JavaScript</span>
+            {skills.map((skill) => (
+              <div className="skill-item" key={skill}>
+                {skill}
+              </div>
+            ))}
           </div>
         </section>
 
         {/* CONTACT */}
-        <section className="contact section" id="contact">
+        <section className="contact-section" id="contact">
           <div className="section-heading">
-            <p className="eyebrow">GET IN TOUCH</p>
+            <div className="eyebrow">GET IN TOUCH</div>
             <h2>Contact</h2>
           </div>
 
-          <p className="contact-text">
-            Interested in connecting or discussing a project?
-          </p>
+          <div className="contact-content">
+            <p>
+              Interested in connecting or discussing a project?
+            </p>
 
-          <a
-            className="contact-email"
-            href="mailto:krishnasakshaya24@gmail.com"
-          >
-            krishnasakshaya24@gmail.com ↗
-          </a>
+            <a
+              className="contact-email"
+              href="mailto:krishnasakshaya24@gmail.com"
+            >
+              krishnasakshaya24@gmail.com ↗
+            </a>
+          </div>
         </section>
       </main>
 
       <footer className="footer">
-        <span>Akshaya Krishna S</span>
+        <span>© {new Date().getFullYear()} Akshaya Krishna S</span>
+
         <span>AI / ML ENGINEERING</span>
       </footer>
     </div>
