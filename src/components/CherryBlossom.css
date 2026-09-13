@@ -1,0 +1,122 @@
+.petal-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-petal {
+  position: absolute;
+
+  top: -20px;
+  left: var(--x);
+
+  width: var(--size);
+  height: calc(var(--size) * 0.68);
+
+  opacity: 0;
+
+  background: radial-gradient(
+    ellipse at 35% 35%,
+    rgba(255, 235, 237, 0.95),
+    rgba(226, 158, 170, 0.72)
+  );
+
+  border-radius: 80% 20% 80% 20%;
+
+  animation: petal-cycle 12s linear var(--delay) infinite;
+
+  will-change: transform, opacity;
+}
+
+@keyframes petal-cycle {
+  /* START HIDDEN */
+  0% {
+    opacity: 0;
+
+    transform:
+      translate3d(0, -30px, 0)
+      rotate(var(--rotation));
+  }
+
+  /* PETALS APPEAR */
+  4% {
+    opacity: var(--opacity);
+  }
+
+  /* PETALS DRIFT */
+  20% {
+    transform:
+      translate3d(
+        calc(var(--drift) * 0.25),
+        20vh,
+        0
+      )
+      rotate(calc(var(--rotation) + 80deg));
+  }
+
+  40% {
+    transform:
+      translate3d(
+        calc(var(--drift) * -0.35),
+        40vh,
+        0
+      )
+      rotate(calc(var(--rotation) + 170deg));
+  }
+
+  50% {
+    opacity: var(--opacity);
+
+    transform:
+      translate3d(
+        calc(var(--drift) * 0.55),
+        60vh,
+        0
+      )
+      rotate(calc(var(--rotation) + 260deg));
+  }
+
+  /* PETALS FINISH FALLING */
+  58% {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        var(--drift),
+        110vh,
+        0
+      )
+      rotate(calc(var(--rotation) + 360deg));
+  }
+
+  /*
+    58% → 100%
+    NOTHING HAPPENS
+    = PAUSE
+  */
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        var(--drift),
+        110vh,
+        0
+      )
+      rotate(calc(var(--rotation) + 360deg));
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-petal {
+    animation: none;
+    opacity: 0.35;
+  }
+}
