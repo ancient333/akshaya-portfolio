@@ -13,10 +13,10 @@ const projects = [
   },
   {
     number: "02",
-    category: "AI / CAREER ASSISTANCE",
+    category: "AI / CAREER INTELLIGENCE",
     title: "CareerPath AI",
     description:
-      "An AI-powered career assistance project focused on helping users explore and navigate career-related decisions.",
+      "An AI-focused project built around helping users explore and understand career-oriented paths.",
     github: "https://github.com/ancient333/Career-Growth-Ai-Assistant",
   },
   {
@@ -24,49 +24,47 @@ const projects = [
     category: "MACHINE LEARNING / DATA",
     title: "AQI Prediction System",
     description:
-      "A machine learning project for predicting air quality using data preprocessing, analysis, and regression techniques.",
+      "A machine learning project focused on air-quality prediction using data preprocessing, analysis and regression techniques.",
     github: "https://github.com/ancient333/AQI-Predictor",
   },
 ];
 
 const additionalWork = [
   {
+    number: "01",
     category: "HARDWARE / SECURITY",
     title: "RFID Smart Security System",
     description:
-      "A smart security system project developed as part of the portfolio work.",
+      "A hardware-focused security project using RFID-based access and security concepts.",
   },
   {
+    number: "02",
     category: "MACHINE LEARNING / DATA",
     title: "Weather Prediction",
     description:
-      "A weather prediction project included in the portfolio.",
+      "A weather prediction project included as part of the portfolio work.",
   },
 ];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <div className="app">
+    <div className="site">
+      <div className="site-background" />
       <CherryBlossom />
 
-      <div className="background-overlay" />
-
-      {/* NAVBAR */}
       <header className="navbar">
         <a href="#overview" className="logo" onClick={closeMenu}>
-          PORTFOLIO
+          AKS
         </a>
 
         <button
           className={`menu-button ${menuOpen ? "active" : ""}`}
-          onClick={() => setMenuOpen((open) => !open)}
-          aria-label="Open navigation menu"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Open navigation"
           aria-expanded={menuOpen}
         >
           <span />
@@ -75,9 +73,8 @@ function App() {
         </button>
       </header>
 
-      {/* MENU */}
       <div className={`menu-overlay ${menuOpen ? "open" : ""}`}>
-        <nav className="menu-nav">
+        <nav>
           <a href="#overview" onClick={closeMenu}>
             Overview
           </a>
@@ -101,25 +98,18 @@ function App() {
       </div>
 
       <main>
-        {/* HERO / OVERVIEW */}
-        <section className="hero" id="overview">
-          <div className="hero-content">
+        {/* HERO */}
+        <section className="hero section" id="overview">
+          <div className="hero-inner">
             <p className="eyebrow">AI / ML ENGINEERING</p>
 
-            <h1 className="hero-name">
-              Akshaya
-              <br />
-              Krishna S
-            </h1>
+            <h1>Akshaya Krishna S</h1>
 
-            <h2 className="hero-role">
-              AI &amp; ML Engineering Student
-            </h2>
+            <h2>AI &amp; ML Engineering Student</h2>
 
             <p className="hero-description">
-              Pursuing a Bachelor&apos;s degree in Engineering,
-              <br />
-              majoring in Artificial Intelligence &amp; Machine Learning.
+              Pursuing a Bachelor&apos;s Degree in Engineering, specializing
+              in Artificial Intelligence &amp; Machine Learning.
             </p>
 
             <div className="social-links">
@@ -147,32 +137,35 @@ function App() {
         </section>
 
         {/* PROJECTS */}
-        <section className="projects-section" id="projects">
+        <section className="projects section" id="projects">
           <div className="section-heading">
-            <p className="section-label">SELECTED WORK</p>
+            <p className="eyebrow">SELECTED WORK</p>
             <h2>Projects</h2>
           </div>
 
           <div className="project-list">
             {projects.map((project) => (
-              <article className="project-card" key={project.title}>
-                <div className="project-meta">
-                  <span>{project.number}</span>
-                  <span>{project.category}</span>
+              <article className="project-card" key={project.number}>
+                <div className="project-number">{project.number}</div>
+
+                <div className="project-content">
+                  <p className="project-category">{project.category}</p>
+
+                  <h3>{project.title}</h3>
+
+                  <p className="project-description">
+                    {project.description}
+                  </p>
+
+                  <a
+                    className="repository-link"
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub Repository ↗
+                  </a>
                 </div>
-
-                <h3>{project.title}</h3>
-
-                <p>{project.description}</p>
-
-                <a
-                  className="github-link"
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub Repository ↗
-                </a>
               </article>
             ))}
           </div>
@@ -180,38 +173,37 @@ function App() {
 
         {/* ADDITIONAL WORK */}
         <section
-          className="additional-section"
+          className="additional-work section"
           id="additional-work"
         >
           <div className="section-heading">
-            <p className="section-label">OTHER WORK</p>
+            <p className="eyebrow">OTHER BUILDS</p>
             <h2>Additional Work</h2>
           </div>
 
           <div className="additional-list">
             {additionalWork.map((work) => (
-              <article
-                className="additional-card"
-                key={work.title}
-              >
-                <p className="project-category">
-                  {work.category}
-                </p>
+              <article className="additional-card" key={work.number}>
+                <div className="additional-number">{work.number}</div>
 
-                <h3>{work.title}</h3>
+                <div className="additional-content">
+                  <p className="project-category">{work.category}</p>
 
-                <p className="additional-description">
-                  {work.description}
-                </p>
+                  <h3>{work.title}</h3>
+
+                  <p className="project-description">
+                    {work.description}
+                  </p>
+                </div>
               </article>
             ))}
           </div>
         </section>
 
         {/* SKILLS */}
-        <section className="skills-section" id="skills">
+        <section className="skills section" id="skills">
           <div className="section-heading">
-            <p className="section-label">CAPABILITIES</p>
+            <p className="eyebrow">CAPABILITIES</p>
             <h2>Skills</h2>
           </div>
 
@@ -226,28 +218,28 @@ function App() {
         </section>
 
         {/* CONTACT */}
-        <section className="contact-section" id="contact">
+        <section className="contact section" id="contact">
           <div className="section-heading">
-            <p className="section-label">GET IN TOUCH</p>
+            <p className="eyebrow">GET IN TOUCH</p>
             <h2>Contact</h2>
           </div>
 
-          <div className="contact-content">
-            <p>
-              Interested in connecting or discussing a project?
-            </p>
+          <p className="contact-text">
+            Interested in connecting or discussing a project?
+          </p>
 
-            <a href="mailto:krishnasakshaya24@gmail.com">
-              krishnasakshaya24@gmail.com ↗
-            </a>
-          </div>
+          <a
+            className="contact-email"
+            href="mailto:krishnasakshaya24@gmail.com"
+          >
+            krishnasakshaya24@gmail.com ↗
+          </a>
         </section>
       </main>
 
       <footer className="footer">
-        <span>© 2026 Akshaya Krishna S</span>
-
-        <a href="#overview">Back to top ↑</a>
+        <span>Akshaya Krishna S</span>
+        <span>AI / ML ENGINEERING</span>
       </footer>
     </div>
   );
